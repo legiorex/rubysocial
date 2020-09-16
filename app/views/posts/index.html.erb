@@ -1,0 +1,39 @@
+       <!-- Blog Entries Column -->
+      <div class="col-md-8">
+
+        <h1 class="my-4">
+        <% if @topic == nil %>
+        Все посты
+          <% else %>
+          <%= @topic.title%>
+        <% end %>
+        </h1>
+        <% @posts.each do |post| %>
+        <!-- Blog Post -->
+        <div class="card mb-4">
+          <div class="card-body">
+            <h2 class="card-title">
+            <%= post.title %>
+            </h2>
+            <p class="card-text">
+            <%= post.body.length <= 2000 ? post.body : post.body[0..2000] %>
+            </p>
+            <a href="/posts/<%= post.id %>" class="btn btn-primary">Читать дальше &rarr;</a>
+          </div>
+          <div class="card-footer text-muted">
+            <%= post.created_at %>
+          </div>
+        </div>
+        <% end %>
+
+        <!-- Pagination -->
+        <ul class="pagination justify-content-center mb-4">
+          <li class="page-item">
+            <a class="page-link" href="#">&larr; Older</a>
+          </li>
+          <li class="page-item disabled">
+            <a class="page-link" href="#">Newer &rarr;</a>
+          </li>
+        </ul>
+
+      </div>
